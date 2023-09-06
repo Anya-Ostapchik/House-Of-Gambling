@@ -532,15 +532,7 @@ body {
         transform: rotate(-90deg);
         margin-top: -450px;
         margin-bottom: -450px;
-        height: 659px;
-    }
-
-    .img__item_1 {
-        top: 0;
-    }
-
-    .img__item_2 {
-        top: 0;
+        height: 303px;
     }
 
     .blog {

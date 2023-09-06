@@ -46,6 +46,7 @@ const imgBlock = document.querySelector('.imgs');
 const imgOne = document.querySelector('.img__item_1');
 const imgTwo = document.querySelector('.img__item_2');
 const imgThree = document.querySelector('.img__item_3');
+
 let speedOne = 1;
 let speedTwo = 1;
 let speedThree = 1;
@@ -55,32 +56,32 @@ function movementElems() {
     let imgTwoTop = parseInt(getComputedStyle(imgTwo).top);
     let imgThreeTop = parseInt(getComputedStyle(imgThree).top);
 
-    let imgOnePosY = imgOne.getBoundingClientRect().y;
-    let imgTwoPosY = imgTwo.getBoundingClientRect().y;
-    let imgThreePosY = imgThree.getBoundingClientRect().y;
-
     const imgOneHeight = parseInt(imgOne.clientHeight);
     const imgTwoHeight = parseInt(imgTwo.clientHeight);
     const imgThreeHeight = parseInt(imgThree.clientHeight);
 
-    const imgBlockPosY = imgBlock.getBoundingClientRect().y;
-    const imgBlockHeight = parseInt(imgBlock.clientHeight);
-
-    const topOne = imgBlockPosY + imgBlockHeight - imgOneHeight;
-    const bottomOne = imgBlockPosY + imgOneHeight;
-    const topTwo = imgBlockPosY + imgBlockHeight - imgTwoHeight;
-    const bottomTwo = imgBlockPosY + imgTwoHeight;
-    const topThree = imgBlockPosY + imgBlockHeight - imgThreeHeight;
-    const bottomThree = imgBlockPosY + imgThreeHeight;
-
     if(window.innerWidth > 916){
+        let imgOnePosY = imgOne.getBoundingClientRect().y;
+        let imgTwoPosY = imgTwo.getBoundingClientRect().y;
+        let imgThreePosY = imgThree.getBoundingClientRect().y;
+
+        const imgBlockPosY = imgBlock.getBoundingClientRect().y;
+        const imgBlockHeight = parseInt(imgBlock.clientHeight);
+
+        const topOne = imgBlockPosY + imgBlockHeight - imgOneHeight;
+        const bottomOne = imgBlockPosY + imgOneHeight;
+        const topTwo = imgBlockPosY + imgBlockHeight - imgTwoHeight;
+        const bottomTwo = imgBlockPosY + imgTwoHeight;
+        const topThree = imgBlockPosY + imgBlockHeight - imgThreeHeight;
+        const bottomThree = imgBlockPosY + imgThreeHeight;
+
         imgOne.style.top = `${imgOneTop + speedOne}px`;
 
         if(imgOnePosY < topOne){
             speedOne = 1;
         }
         if(imgOnePosY + imgOneHeight > bottomOne){
-            speedOne = -1;
+            speedOne = -2;
         }
 
         imgTwo.style.top = `${imgTwoTop + speedTwo}px`;
@@ -89,7 +90,7 @@ function movementElems() {
             speedTwo = 1;
         }
         if(imgTwoPosY + imgTwoHeight > bottomTwo){
-            speedTwo = -1;
+            speedTwo = -2;
         }
 
         imgThree.style.top = `${imgThreeTop + speedThree}px`;
@@ -98,12 +99,51 @@ function movementElems() {
             speedThree = 1;
         }
         if(imgThreePosY + imgThreeHeight > bottomThree){
-            speedThree = -1;
+            speedThree = -2;
         }
     } 
-    // else{
-    //     imgOne.style.top = `${imgOneTop + speedOne}px`;
-    // }
+    else{
+        let imgOnePosX = imgOne.getBoundingClientRect().x;
+        let imgTwoPosX = imgTwo.getBoundingClientRect().x;
+        let imgThreePosX = imgThree.getBoundingClientRect().x;
+
+        const imgBlockPosX = 0;
+        const imgBlockWidth = window.innerWidth;
+
+        const leftOne = imgBlockPosX + imgBlockWidth - imgOneHeight;
+        const rightOne = imgBlockPosX + imgOneHeight;
+        const leftTwo = imgBlockPosX + imgBlockWidth - imgTwoHeight;
+        const rightTwo = imgBlockPosX + imgTwoHeight;
+        const leftThree = imgBlockPosX + imgBlockWidth - imgThreeHeight;
+        const rightThree = imgBlockPosX + imgThreeHeight;
+
+        imgOne.style.top = `${imgOneTop + speedOne}px`;
+
+        if(imgOnePosX < leftOne){
+            speedOne = 1;
+        }
+        if(imgOnePosX + imgOneHeight > rightOne){
+            speedOne = -2;
+        }
+
+        imgTwo.style.top = `${imgTwoTop + speedTwo}px`;
+
+        if(imgTwoPosX < leftTwo){
+            speedTwo = 1;
+        }
+        if(imgTwoPosX + imgTwoHeight > rightTwo){
+            speedTwo = -2;
+        }
+
+        imgThree.style.top = `${imgThreeTop + speedThree}px`;
+
+        if(imgThreePosX < leftThree){
+            speedThree = 1;
+        }
+        if(imgThreePosX + imgThreeHeight > rightThree){
+            speedThree = -2;
+        }
+   }
     requestAnimationFrame(movementElems);
 }
 
